@@ -1,0 +1,42 @@
+<div class="list-item-rating">
+                            <% const fullStars=Math.floor(item.rating); const hasHalf=item.rating % 1>= 0.5;
+                                for (let i = 0; i < fullStars; i++) { %>
+                                    <i class="fa-solid fa-star"></i>
+                                    <% } %>
+                                        <% if (hasHalf) { %>
+                                            <i class="fa-solid fa-star-half"></i>
+                                            <% } %>
+                                                <% for (let i=0; i < 5 - Math.ceil(item.rating); i++) { %>
+                                                    <i class="fa-regular fa-star"></i>
+                                                    <% } %>
+                        </div>
+
+
+                                    <!-- <div class="class-list-item"> -->
+                <!-- <div class="list-item-img"><img -->
+                        <!-- src="https://cheeseforthought.com/wp-content/uploads/2024/09/indian-pub-shahi-paneer-masala-recipe.png" -->
+                        <!-- alt=""></div> -->
+                <!-- <div class="list-item-info"> -->
+                    <!-- <div class="list-item-name">shahi paneer</div> -->
+                    <!-- <div class="list-item-des">Shahi paneer | 2 roti | rice</div> -->
+                    <!-- <div class="list-item-rating"> -->
+                        <!-- <i class="fa-solid fa-star"></i> -->
+                        <!-- <i class="fa-solid fa-star"></i> -->
+                        <!-- <i class="fa-solid fa-star"></i> -->
+                        <!-- <i class="fa-solid fa-star-half"></i> -->
+                        <!-- <!~~ <i class="fa-regular fa-star"></i> ~~> -->
+                    <!-- </div> -->
+                    <!-- <div class="list-item-pricing">₹320/-</div> -->
+                    <!-- <div class="list-item-purchase"> -->
+                        <!-- <button class="addToCartBtn"> -->
+                            <!-- <i class="fa fa-shopping-cart"></i> Add Meal -->
+                        <!-- </button> -->
+
+                        <!-- <div class="quantity-controls" style="display: none;"> -->
+                            <!-- <button class="decreaseBtn">−</button> -->
+                            <!-- <span class="itemCount" data-id="1">1</span> -->
+                            <!-- <button class="increaseBtn">+</button> -->
+                        <!-- </div> -->
+                    <!-- </div> -->
+                <!-- </div> -->
+            <!-- </div> -->

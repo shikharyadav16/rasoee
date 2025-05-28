@@ -1,0 +1,73 @@
+<script>
+
+    const mainCat = document.querySelectorAll(".main-class");
+
+    mainCat.forEach(item => {
+        item.addEventListener("click", (event) => {
+            event.preventDefault();
+
+            mainCat.forEach(el => el.classList.remove("active"));
+            event.target.classList.add("active");
+        });
+    });
+
+    const buttons = document.querySelectorAll(".main-class");
+    const containers = {
+        "jain-cat": document.querySelector(".bev-container"),
+        "veg-cat": document.querySelector(".veg-container"),
+        "nonveg-cat": document.querySelector(".non-veg-container")
+    };
+
+    function hideAllContainers() {
+        Object.values(containers).forEach(container => {
+            container.style.display = "none";
+        });
+    }
+
+    function showContainer(className) {
+        hideAllContainers();
+        containers[className].style.display = "block";
+    }
+
+    buttons.forEach(button => {
+        button.addEventListener("click", (event) => {
+            event.preventDefault();
+
+            buttons.forEach(btn => btn.classList.remove("active"));
+            button.classList.add("active");
+
+            showContainer(button.classList[0]);
+        });
+    });
+
+    showContainer("veg-cat");
+    document.querySelector(".veg-cat").classList.add("active");
+
+ /*   const navItems = document.querySelectorAll(".down-bar div");
+    const sideItems = document.querySelectorAll(".side-bar div");
+
+    // Function to remove active from both navs and set active on the clicked item (by a shared class)
+    function setActive(className) {
+        navItems.forEach(el => el.classList.remove("active"));
+        sideItems.forEach(el => el.classList.remove("active"));
+
+        // Add active to matching element by className
+        const navActive = document.querySelector(`.down-bar .${className}`);
+        const sideActive = document.querySelector(`.side-bar .${className}`);
+
+        if (navActive) navActive.classList.add("active");
+        if (sideActive) sideActive.classList.add("active");
+    }
+
+    // Initialize default active to "home"
+    setActive("home");
+
+    // Add click listeners to both navItems and sideItems
+    [...navItems, ...sideItems].forEach(item => {
+        item.addEventListener("click", () => {
+            // Use the first class as the identifier
+            const className = item.classList[0];
+            setActive(className);
+        });
+    });*/
+</script>

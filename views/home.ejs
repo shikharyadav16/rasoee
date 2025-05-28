@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/your-kit-code.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <%- include('./components/css/style.ejs') %>
+        <style>
+
+        </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="nav">
+            <div class="upper-nav">
+                <div class="user-location">
+                    <div class="user-location-icon">
+                        <i class="fa fa-map-marker"></i>
+                        <div class="user-location-short-add">HOME</div>
+                        <div class="chevron">&#x2304;</div>
+
+                    </div>
+                    <div class="user-location-address">
+                        52, Satbari, Kidwai Nagar, kan...
+                    </div>
+                </div>
+
+                <div class="search-cover pc-view">
+                    <div class="search-icon">
+                        <i class="fa fa-search"></i>
+                    </div>
+                    <div class="search-bar">
+                        <input type="text" placeholder="Search shops, food items...">
+                    </div>
+
+                </div>
+
+                <div class="nav-right-menu">
+                    <div class="nav-right-menu-item">
+                        <i class="fa fa-heart"></i>
+                    </div>
+                    <div class="nav-right-menu-item cart">
+                        <i class="fa fa-shopping-cart"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="lower-nav">
+                <div class="search-cover mobile-view">
+                    <div class="search-icon">
+                        <i class="fa fa-search"></i>
+                    </div>
+                    <div class="search-bar">
+                        <input type="text" placeholder="Search shops, food items...">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="side-bar">
+            <div class="home"><i class="fas fa-house"></i></div>
+            <div class="prev-orders"><i class="fas fa-clock-rotate-left"></i></div>
+            <div class="cart"><i class="fas fa-shopping-cart"></i></div>
+            <div class="shops"><i class="fas fa-store"></i></div>
+            <div class="account"><i class="fas fa-user"></i></div>
+        </div>
+
+        <div class="main">
+            <div class="class-container">
+                <div class="classification">
+                    <div class="jain-cat main-class" style="border-radius: 10px 0 0 10px;">Beverages</div>
+                    <div class="veg-cat main-class">Vegeta..</div>
+                    <div class="nonveg-cat main-class" style="border-radius: 0 10px 10px 0;">Non-Veg..</div>
+                </div>
+            </div>
+
+            <!-- VEG CONTAINER -->
+
+            <div class="main-container veg-container">
+                <div class="class">
+                    <div class="class-name">POPULAR</div>
+                    <div class="class-items" style="overflow-x: scroll;">
+                        <div class="class-item"><img src="" alt=""></div>
+                        <div class="class-item"><img src="" alt=""></div>
+                        <div class="class-item"><img src="" alt=""></div>
+                        <div class="class-item"><img src="" alt=""></div>
+                        <div class="class-item"><img src="" alt=""></div>
+                        <div class="class-item"><img src="" alt=""></div>
+                    </div>
+                </div>
+                <div class="banner">
+                    <img src="/images/7967051.jpg" alt="">
+                </div>
+                <div class="class">
+                    <div class="class-name">JAIN</div>
+                    <div class="class-items">
+                        <div class="class-item"><img src="https://i.ytimg.com/vi/aoNbBQbOqQQ/maxresdefault.jpg" alt="">
+                        </div>
+                        <div class="class-item"><img
+                                src="https://5.imimg.com/data5/ANDROID/Default/2021/8/IF/JU/PH/44307765/product-jpeg.jpg"
+                                alt="">
+                        </div>
+                        <div class="class-item"><img
+                                src="https://www.indianhealthyrecipes.com/wp-content/uploads/2019/04/veg-biryani-recipe-500x500.jpg"
+                                alt=""></div>
+                        <div class="class-item"><img src="" alt=""></div>
+                    </div>
+                </div>
+                <div class="class">
+                    <div class="class-name">ITEMS</div>
+                    <div class="class-list-items">
+
+
+
+                        <% vegItems.forEach((item)=> { %>
+                            <div class="class-list-item">
+                                <div class="list-item-img">
+                                    <img src="<%= item.itemImg %>" alt="">
+                                </div>
+                                <div class="list-item-info">
+                                    <div class="list-item-name">
+                                        <%= item.itemName %>
+                                    </div>
+                                    <div class="list-item-des">
+                                        <%= item.itemDes %>
+                                    </div>
+
+                                    <div class="list-item-pricing">₹<%= item.itemPrice %>/-</div>
+                                    <div class="list-item-purchase">
+                                        <button class="addToCartBtn">
+                                            <i class="fa fa-shopping-cart"></i> Add Meal
+                                        </button>
+
+                                        <div class="quantity-controls" style="display: none;">
+                                            <button class="decreaseBtn">−</button>
+                                            <span class="itemCount" data-id="<%= item.id %>">1</span>
+                                            <button class="increaseBtn">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <% }); %>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- NON VEG CONTAINER -->
+
+
+
+            <div class="main-container non-veg-container" style="display: none;">
+                <div class="class">
+                    <div class="class-name">POPULAR</div>
+                    <div class="class-items" style="overflow-x: scroll;">
+                        <div class="class-item"><img src="" alt=""></div>
+                        <div class="class-item"><img src="" alt=""></div>
+                        <div class="class-item"><img src="" alt=""></div>
+                        <div class="class-item"><img src="" alt=""></div>
+                        <div class="class-item"><img src="" alt=""></div>
+                        <div class="class-item"><img src="" alt=""></div>
+                    </div>
+                </div>
+                <div class="banner">
+                    <img src="/images/7967051.jpg" alt="">
+                </div>
+                <div class="class">
+                    <div class="class-name">JAIN</div>
+                    <div class="class-items">
+                        <div class="class-item"><img src="https://i.ytimg.com/vi/aoNbBQbOqQQ/maxresdefault.jpg" alt="">
+                        </div>
+                        <div class="class-item"><img
+                                src="https://5.imimg.com/data5/ANDROID/Default/2021/8/IF/JU/PH/44307765/product-jpeg.jpg"
+                                alt="">
+                        </div>
+                        <div class="class-item"><img
+                                src="https://www.indianhealthyrecipes.com/wp-content/uploads/2019/04/veg-biryani-recipe-500x500.jpg"
+                                alt=""></div>
+                        <div class="class-item"><img src="" alt=""></div>
+                    </div>
+                </div>
+                <div class="class">
+                    <div class="class-name">ITEMS</div>
+                    <div class="class-list-items">
+
+
+
+                        <% nonVegItems.forEach((item)=> { %>
+                            <div class="class-list-item">
+                                <div class="list-item-img">
+                                    <img src="<%= item.itemImg %>" alt="">
+                                </div>
+                                <div class="list-item-info">
+                                    <div class="list-item-name">
+                                        <%= item.itemName %>
+                                    </div>
+                                    <div class="list-item-des">
+                                        <%= item.itemDes %>
+                                    </div>
+
+                                    <div class="list-item-pricing">₹<%= item.itemPrice %>/-</div>
+                                    <div class="list-item-purchase">
+                                        <button class="addToCartBtn">
+                                            <i class="fa fa-shopping-cart"></i> Add Meal
+                                        </button>
+
+                                        <div class="quantity-controls" style="display: none;">
+                                            <button class="decreaseBtn">−</button>
+                                            <span class="itemCount" data-id="<%= item.id %>">1</span>
+                                            <button class="increaseBtn">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <% }); %>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- BEVERAGE CONTAINER -->
+
+
+            <div class="main-container bev-container" style="display: none;">
+                <div class="class">
+                    <div class="class-name">POPULAR</div>
+                    <div class="class-items" style="overflow-x: scroll;">
+                        <div class="class-item"><img src="" alt=""></div>
+                        <div class="class-item"><img src="" alt=""></div>
+                        <div class="class-item"><img src="" alt=""></div>
+                        <div class="class-item"><img src="" alt=""></div>
+                        <div class="class-item"><img src="" alt=""></div>
+                        <div class="class-item"><img src="" alt=""></div>
+                    </div>
+                </div>
+                <div class="banner">
+                    <img src="/images/7967051.jpg" alt="">
+                </div>
+                <div class="class">
+                    <div class="class-name">JAIN</div>
+                    <div class="class-items">
+                        <div class="class-item"><img src="https://i.ytimg.com/vi/aoNbBQbOqQQ/maxresdefault.jpg" alt="">
+                        </div>
+                        <div class="class-item"><img
+                                src="https://5.imimg.com/data5/ANDROID/Default/2021/8/IF/JU/PH/44307765/product-jpeg.jpg"
+                                alt="">
+                        </div>
+                        <div class="class-item"><img
+                                src="https://www.indianhealthyrecipes.com/wp-content/uploads/2019/04/veg-biryani-recipe-500x500.jpg"
+                                alt=""></div>
+                        <div class="class-item"><img src="" alt=""></div>
+                    </div>
+                </div>
+                <div class="class">
+                    <div class="class-name">ITEMS</div>
+                    <div class="class-list-items">
+
+
+
+                        <% bevItems.forEach((item)=> { %>
+                            <div class="class-list-item">
+                                <div class="list-item-img">
+                                    <img src="<%= item.itemImg %>" alt="">
+                                </div>
+                                <div class="list-item-info">
+                                    <div class="list-item-name">
+                                        <%= item.itemName %>
+                                    </div>
+                                    <div class="list-item-des">
+                                        <%= item.itemDes %>
+                                    </div>
+
+                                    <div class="list-item-pricing">₹<%= item.itemPrice %>/-</div>
+                                    <div class="list-item-purchase">
+                                        <button class="addToCartBtn">
+                                            <i class="fa fa-shopping-cart"></i> Add Meal
+                                        </button>
+
+                                        <div class="quantity-controls" style="display: none;">
+                                            <button class="decreaseBtn">−</button>
+                                            <span class="itemCount" data-id="<%= item.id %>">1</span>
+                                            <button class="increaseBtn">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <% }); %>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="copyright-container">
+                &copy; 2025 rasoee. All rights reserved.
+            </div>
+
+            <div class="down-bar">
+                <div class="home"><i class="fas fa-house"></i></div>
+                <div class="prev-orders"><i class="fas fa-clock-rotate-left"></i></div>
+                <div class="cart"><i class="fas fa-shopping-cart"></i></div>
+                <div class="shops"><i class="fas fa-store"></i></div>
+                <div class="account"><i class="fas fa-user"></i></div>
+
+            </div>
+        </div>
+    </div>
+    <%- include('./components/js/script.ejs') %>
+        <script>
+            Array.from(document.querySelectorAll(".cart")).forEach((Element) => {
+                Element.addEventListener("click", () => {
+                    if (items.some(n => n !== 0)) {
+                        sessionStorage.setItem("cart", JSON.stringify(items))
+                        window.location.href = "/cart";
+                    }
+                })
+            })
+        </script>
+        <script>
+
+            let items = new Array(100).fill(0);
+
+            // Select only class-list-item elements within the veg-container
+            // Target ALL class-list-item elements (works for Veg/Non-Veg/Beverages)
+            document.querySelectorAll('.class-list-item').forEach((Element) => {
+                const addToCartBtn = Element.querySelector('.addToCartBtn');
+                const quantityControls = Element.querySelector('.quantity-controls');
+                const decreaseBtn = Element.querySelector('.decreaseBtn');
+                const increaseBtn = Element.querySelector('.increaseBtn');
+                const itemCount = Element.querySelector('.itemCount');
+
+                // Skip elements that don't have the required buttons/controls
+                if (!addToCartBtn || !quantityControls || !decreaseBtn || !increaseBtn || !itemCount) {
+                    return;
+                }
+
+                let count;
+
+                addToCartBtn.addEventListener("click", (event) => {
+                    event.preventDefault();
+                    addToCartBtn.style.display = "none";
+                    quantityControls.style.display = "flex";
+                    count = 1;
+                    items[parseInt(itemCount.dataset.id)] = 1;
+                    itemCount.textContent = count;
+                });
+
+                decreaseBtn.addEventListener("click", (event) => {
+                    event.preventDefault();
+                    if (count > 1) {
+                        itemCount.textContent = --count;
+                        items[parseInt(itemCount.dataset.id)] -= 1;
+                    } else {
+                        items[parseInt(itemCount.dataset.id)] = 0;
+                        addToCartBtn.style.display = "flex";
+                        quantityControls.style.display = "none";
+                    }
+                });
+
+                increaseBtn.addEventListener("click", (event) => {
+                    event.preventDefault();
+                    itemCount.textContent = ++count;
+                    items[parseInt(itemCount.dataset.id)] += 1;
+                    console.log
+                });
+            });
+        </script>
+</body>
+
+
+</html>

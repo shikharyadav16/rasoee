@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+
+        }
+
+        .container {
+            width: 100vw;
+            max-width: 600px;
+            height: 750px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .top-sec {
+            width: 100%;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .top-sec img {
+            height: 150px;
+        }
+
+        .bot-sec {
+            border-radius: 35px 35px 0 0;
+            width: 100%;
+            height: 500px;
+            padding: 20px;
+            margin: 0 auto;
+            box-sizing: border-box;
+            display: flex;
+            background-color: white;
+            flex-direction: column;
+            justify-content: space-around;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .bot-sec>div {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .bot-sec .name-head,
+        .bot-sec .phone-head,
+        .bot-sec .email-head,
+        .bot-sec .dob-head,
+        .bot-sec .add-head {
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: 14px;
+            padding-left: 10px;
+            color: #000000ad;
+
+        }
+
+        .bot-sec input {
+            height: 40px;
+            padding-inline: 15px;
+            font-size: 16px;
+            border: 1px solid #0000001f;
+            outline: none;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: rgba(0, 0, 0, 0.762);
+            border-radius: 20px;
+            transition: border 0.3s;
+        }
+
+        .email input {
+            background-color: rgba(0, 0, 0, 0.057);
+            color: #333333a9;
+        }
+
+        .footer {
+            height: 70px;
+            width: 100%;
+            display: flex;
+            background-color: white;
+            align-items: start;
+            justify-content: center;
+        }
+
+        .footer button {
+            border-radius: 15px;
+            width: 280px;
+            height: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            background-color: #15ab6a;
+            background: linear-gradient(#58d69f, #15ab6a, #0f955b);
+            border: 3px solid rgba(0, 0, 0, 0.192);
+            color: white;
+            cursor: pointer;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .header {
+            display: flex;
+            padding: 20px;
+            position: absolute;
+        }
+
+        .header-head {
+            margin-left: 15px;
+            font-family: sans-serif;
+            font-size: 20px;
+            margin-top: 1px;
+            font-weight: 600;
+            color: rgba(0, 0, 0, 0.721);
+        }
+
+        i {
+            font-size: 26px;
+            cursor: pointer;
+            color: rgba(0, 0, 0, 0.695);
+        }
+
+        i:hover {
+            color: rgba(0, 0, 0, 0.995);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <i class="fa fa-arrow-left"></i>
+            <div class="header-head">Edit Profile</div>
+        </div>
+        <div class="top-sec">
+            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="">
+        </div>
+        <div class="bot-sec">
+            <div class="name">
+                <div class="name-head">Full Name</div>
+                <input type="text" value="Shikhar Yadav" placeholder="Enter name...">
+            </div>
+            <div class="phone">
+                <div class="phone-head">Phone Number</div>
+                <input type="text" placeholder="Enter phone no...">
+            </div>
+            <div class="email">
+                <div class="email-head">Email Address</div>
+                <input type="text" placeholder="Enter email" readonly value="yadavshikhar49@gmail.com">
+            </div>
+            <div class="dob">
+                <div class="dob-head">Date of Birth</div>
+                <input type="date" placeholder="DD/MM/YYYY">
+            </div>
+            <div class="address">
+                <div class="add-head">Date of Birth</div>
+                <input type="text" placeholder="Address...">
+            </div>
+        </div>
+        <div class="footer">
+            <button>Save Changes</button>
+        </div>
+    </div>
+</body>
+
+</html>
