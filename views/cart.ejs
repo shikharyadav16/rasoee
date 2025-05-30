@@ -92,11 +92,13 @@
             object-fit: cover;
             border-radius: 8px;
         }
+
         .image {
             display: flex;
             align-items: center;
             justify-content: center;
         }
+
         .price {
             color: #15ab6a;
             font-weight: bold;
@@ -105,6 +107,7 @@
         tbody tr:hover {
             background-color: #f9f9f9;
         }
+
         .cta-btn {
             position: absolute;
             bottom: 20px;
@@ -122,6 +125,7 @@
             cursor: pointer;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+
         .total {
             position: absolute;
             font-size: x-large;
@@ -135,7 +139,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <i class="fa fa-arrow-left"></i>
+            <i class="fa fa-arrow-left" onclick="window.location.href = '/home'"></i>
             <div class="header-head">Cart</div>
         </div>
 
@@ -148,31 +152,32 @@
                     <th>Price</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td class="image"><img src="https://www.indianhealthyrecipes.com/wp-content/uploads/2021/11/pav-bhaji.jpg"
-                            alt="Pao Bhaji"></td>
-                    <td>Pao Bhaji</td>
-                    <td>Pav | Bhaji | Lemon</td>
-                    <td class="price">₹200/-</td>
-                </tr>
-                <tr>
-                    <td class="image"><img src="https://via.placeholder.com/100" alt="Veg Burger"></td>
-                    <td>Veg Burger</td>
-                    <td>Bun | Patty | Mayo</td>
-                    <td class="price">₹120/-</td>
-                </tr>
-                <tr>
-                    <td class="image"><img src="https://via.placeholder.com/100" alt="Pizza"></td>
-                    <td>Margherita Pizza</td>
-                    <td>Cheese | Tomato | Herbs</td>
-                    <td class="price">₹250/-</td>
-                </tr>
+            <tbody id="cartBody">
             </tbody>
         </table>
     </div>
     <div class="total">Total: ₹570/-</div>
     <div class="cta-btn">Proceed to Checkout</div>
 </body>
+
+<script>
+    const items = JSON.parse(sessionStorage.getItem("items") || "[]");
+    const cartBody = document.getElementById("cartBody");
+
+    if (items.length === 0) {
+        cartBody.innerHTML = `<tr><td colspan="4">No items found in cart</td></tr>`;
+    } else {
+        items.forEach(item => {
+            cartBody.innerHTML += `
+                <tr>
+                    <td class="image"><img src="${item.itemImg}" alt="${item.itemName}"></td>
+                    <td>${item.itemName}</td>
+                    <td>${item.itemDes}</td>
+                    <td class="price">₹${item.itemPrice}/-</td>
+                </tr>
+            `;
+        });
+    }
+</script>
 
 </html>

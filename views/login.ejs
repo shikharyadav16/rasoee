@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom font for Inter */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            /* Background image for the entire page */
+            background-image: url('https://placehold.co/1920x1080/F0F0F0/222222?text=Kitchen+Utensils');
+            /* Placeholder for kitchen utensils */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            /* Ensure it covers the full viewport height */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* Fallback background color if image fails to load or is not prominent enough */
+            background-color: #f0f0f0;
+        }
+
+        video {
+            border-radius: 100%;
+        }
+
+        .tagline {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: bold;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+    <div class="flex flex-col md:flex-row w-full max-w-6xl mx-auto rounded-xl shadow-lg overflow-hidden"
+        style="background-color: #15AB69;">
+        <div class="md:w-1/2 p-8 flex flex-col items-center justify-center">
+            <video width="320" height="240" id="myVideo" muted playsinline loop>
+                <source id="videoSource" src="/videos/InShot_20250528_095529181.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <!-- <img src="https://placehold.co/400x400/15AB69/ffffff " alt="Cartoon Chef Preparing Food" class="max-w-full h-auto rounded-full shadow-xl"> -->
+            <p class="mt-4 text-white text-lg text-bold text-center tagline">Craving something tasty? Rasoee is ready to
+                cook
+                for you!</p>
+        </div>
+
+        <div class="md:w-1/2 p-8 bg-white bg-opacity-90 flex items-center justify-center">
+            <div class="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
+                <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">Login</h2>
+                <form>
+                    <div class="mb-4">
+                        <label for="email" class="block text-gray-700 text-sm font-medium mb-2">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="your@example.com"
+                            class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                    </div>
+                    <div class="mb-6">
+                        <label for="password" class="block text-gray-700 text-sm font-medium mb-2">Password</label>
+                        <input type="password" id="password" name="password" placeholder="********"
+                            class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                    </div>
+                    <button
+                        class="w-full bg-green-600 text-white p-3 rounded-md font-semibold hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition duration-200 submit-btn">
+                        Log In
+                    </button>
+                    <p class="text-center text-sm text-gray-600 mt-4">
+                        Don't have an account? <a href="#" class="text-green-600 hover:underline">Sign Up</a>
+                    </p>
+                    <div class="msg-content" style="color: red;"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const video = document.getElementById('myVideo');
+        const source = document.getElementById('videoSource');
+        let playForward = true;
+
+        video.muted = true;
+        window.onload = () => video.play();
+
+        video.addEventListener('ended', () => {
+            video.load();
+            video.play();
+        });
+    </script>
+
+    <script>
+        let msgContent = document.getElementsByClassName("msg-content")[0];
+
+        document.getElementsByClassName("submit-btn")[0].addEventListener("click", (e) => {
+            e.preventDefault();
+            let emial, password;
+            email = document.getElementById('email').value;
+            password = document.getElementById('password').value;
+            if (!email.trim() || !password.trim()) return;
+            sendData(email, password)
+        })
+
+        async function sendData(email, password) {
+            try {
+                const res = await fetch("/login", {
+                    method: "post",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const response = await res.json();
+
+                if (res.ok) {
+                    window.location.href = "/home";
+                } else {
+                    msgContent.innerHTML = response.msg;
+                }
+
+            } catch (err) {
+                console.log("Something error occured!", err);
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
