@@ -119,6 +119,7 @@
                 const response = await res.json();
 
                 if (res.ok) {
+                    window.sessionStorage.setItem("email", response.address);
                     window.location.href = "/home";
                 } else {
                     msgContent.innerHTML = response.msg;

@@ -58,8 +58,10 @@
     .user-location-address {
         padding-left: 15px;
         font-size: 14px;
+        font-weight: 400;
+        margin-left: 18px;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        color: rgb(219, 219, 219);
+        color: rgb(232, 232, 232);
     }
 
     .nav-right-menu {

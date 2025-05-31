@@ -47,6 +47,7 @@
             background-color: white;
             transition: transform 0.2s ease;
         }
+
         .back-btn i {
             font-size: 24px;
             cursor: pointer;
@@ -209,8 +210,13 @@
         }
 
         @keyframes loading {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
+            0% {
+                background-position: 200% 0;
+            }
+
+            100% {
+                background-position: -200% 0;
+            }
         }
     </style>
 </head>
@@ -227,31 +233,43 @@
             <!-- Example Item 1 -->
             <div class="history-item">
                 <div class="history-img">
-                    <img src="https://www.cubesnjuliennes.com/wp-content/uploads/2020/07/Instant-Pot-Mumbai-Pav-Bhaji-Recipe.jpg" alt="Pao Bhaji">
+                    <img src="https://www.cubesnjuliennes.com/wp-content/uploads/2020/07/Instant-Pot-Mumbai-Pav-Bhaji-Recipe.jpg"
+                        alt="Pao Bhaji">
                 </div>
                 <div class="details">
                     <span class="status">Delivered</span>
                     <div class="name">Pao Bhaji</div>
-                    <div class="des">Freshly made with papo, bhaji, and a hint of lemon. Served with butter toasted buns and traditional Indian spices.</div>
+                    <div class="des">Freshly made with papo, bhaji, and a hint of lemon. Served with butter toasted buns
+                        and traditional Indian spices.</div>
                     <div class="price">₹200/-</div>
                 </div>
             </div>
 
             <!-- Example Item 2 -->
-            <div class="history-item">
-                <div class="history-img">
-                    <img src="https://source.unsplash.com/random/800x601?food" alt="Masala Dosa">
+            <% items.forEach(item=> { %>
+                <div class="history-item">
+                    <div class="history-img">
+                        <img src="<%= item.itemImg %>" alt="<%= item.itemName %>">
+                    </div>
+                    <div class="details">
+                        <span class="status">
+                            <%= item.status %>
+                        </span>
+                        <div class="name">
+                            <%= item.itemName %>
+                        </div>
+                        <div class="des">
+                            <%= item.itemDes %>
+                        </div>
+                        <div class="price">₹<%= item.itemPrice %>/-</div>
+                    </div>
                 </div>
-                <div class="details">
-                    <span class="status">Completed</span>
-                    <div class="name">Masala Dosa</div>
-                    <div class="des">Crispy rice crepe stuffed with spiced potatoes, served with coconut chutney and sambar.</div>
-                    <div class="price">₹180/-</div>
-                </div>
-            </div>
+                <% }) %>
 
-            <!-- Add more items as needed -->
+
+                    <!-- Add more items as needed -->
         </div>
     </div>
 </body>
+
 </html>
