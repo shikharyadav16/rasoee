@@ -2,172 +2,147 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <style>
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            width: 100vw;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #f0f0f0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="/css/cart.css">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
-        .container {
-            width: 100%;
-            max-width: 700px;
-            height: 100vh;
-            background-color: white;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-            overflow-y: auto;
-            margin: auto;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .header {
-            display: flex;
-            align-items: center;
-            padding: 20px;
-            background-color: white;
-            position: sticky;
-            top: 0;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            z-index: 10;
-        }
-
-
-        .header-head {
-            margin-left: 15px;
-            font-size: 20px;
-            font-weight: 600;
-            color: rgba(0, 0, 0, 0.721);
-        }
-
-        i {
-            font-size: 26px;
-            cursor: pointer;
-            color: rgba(0, 0, 0, 0.695);
-        }
-
-        i:hover {
-            color: rgba(0, 0, 0, 0.995);
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
-
-        thead {
-            background-color: #eaeaea;
-            top: 80px;
-            z-index: 5;
-        }
-
-        th,
-        td {
-            border: 1px solid #ccc;
-            padding: 12px;
-            text-align: left;
-            vertical-align: middle;
-        }
-
-        th {
-            font-weight: bold;
-            color: #333;
-        }
-
-        img {
-            width: 100px;
-            height: 80px;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-
-        .image {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .price {
-            color: #15ab6a;
-            font-weight: bold;
-        }
-
-        tbody tr:hover {
-            background-color: #f9f9f9;
-        }
-
-        .cta-btn {
-            position: absolute;
-            bottom: 20px;
-            border-radius: 15px;
-            width: 280px;
-            height: 50px;
-            font-size: 18px;
-            text-align: center;
-            align-content: center;
-            font-weight: 600;
-            background-color: #15ab6a;
-            background: linear-gradient(#58d69f, #15ab6a, #0f955b);
-            border: 3px solid rgba(0, 0, 0, 0.192);
-            color: white;
-            cursor: pointer;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        .total {
-            position: absolute;
-            font-size: x-large;
-            color: #333333cf;
-            font-weight: 600;
-            bottom: 90px;
-        }
-    </style>
 </head>
 
 <body>
     <div class="container">
-        <div class="header">
-            <i class="fa fa-arrow-left" onclick="window.location.href = '/home'"></i>
-            <div class="header-head">Cart</div>
+        <header>
+            <h1 class="bag-title"><i class="fa fa-arrow-left"
+                    style="margin-right: 10px; cursor: pointer; font-size: 24px;"
+                    onclick="window.location.href='/home'"></i>Your Order Summary<h1>
+        </header>
+
+        <div class="shopping-grid">
+            <div class="products-section">
+                <h2 class="section-title">Product</h2>
+
+                <div class="shipping-form">
+                    <h2 class="section-title">Calculated Shipping</h2>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="Address">Delivery Location</label>
+                            <input type="text" id="address" placeholder="Enter delivery location">
+                        </div>
+                        <div class="form-group">
+                            <label for="Near">Nearby Landmarks</label>
+                            <input type="text" id="near" placeholder="Enter nearby landmarks">
+                        </div>
+                    </div>
+
+                    <button class="update-btn">Update for this Purchase</button>
+                </div>
+            </div>
+
+            <div class="summary-section">
+                <h2 class="section-title">Coupon Code</h2>
+                <div class="coupon-section">
+                    <input type="text" class="coupon-input" placeholder="Enter coupon code">
+                    <button class="apply-btn">Apply</button>
+                </div>
+                <h2 class="section-title">Order Summary</h2>
+                <div class="summary-item">
+                    <span class="summary-label">Subtotal:</span>
+                    <span class="summary-value" id="subAmount">$71.50</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">GST(Tax):</span>
+                    <span class="summary-value" id="gst">-$6.00</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Shipping Charges:</span>
+                    <span class="summary-value" id="shippingCharge">6</span>
+                </div>
+
+                <div class="summary-total">
+                    <span>Total Payable:</span>
+                    <span id="amount">$65.50</span>
+                </div>
+
+                <div class="free-shipping">
+                    Free Shipping<br>
+                    When you spend ₹350+
+                </div>
+
+                <button class="apply-btn cta-btn" style="width: 100%;">Proceed to Checkout</button>
+            </div>
+            <div id="map"></div>
         </div>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Image</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Price</th>
-                </tr>
-            </thead>
-            <tbody id="cartBody">
-            </tbody>
-        </table>
+        <div class="contact-options">
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-phone-alt"></i>
+                </div>
+                <div class="contact-title">Call Us Anytime</div>
+                <div class="contact-text">+91 9621675161</div>
+            </div>
+
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-comments"></i>
+                </div>
+                <div class="contact-title">Chat With Us</div>
+                <div class="contact-text">We offer 24-hour chat support</div>
+            </div>
+
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-gift"></i>
+                </div>
+                <div class="contact-title">Gift Cards</div>
+                <div class="contact-text">For your loved one, in any amount</div>
+            </div>
+        </div>
     </div>
-    <div class="total">Total: ₹570/-</div>
-    <div class="cta-btn">Proceed to Checkout</div>
-</body>
 
-<script>
-    const items = JSON.parse(sessionStorage.getItem("items") || "[]");
-    const cartBody = document.getElementById("cartBody");
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        let map, marker;
 
-    if (items.length === 0) {
-        cartBody.innerHTML = `<tr><td colspan="4">No items found in cart</td></tr>`;
-    } else {
-        items.forEach(item => {
+        if (navigator.geolocation) {
+            navigator.geolocation.watchPosition(
+                position => {
+                    const lat = position.coords.latitude;
+                    const lon = position.coords.longitude;
+
+                    // Only initialize the map once
+                    if (!map) {
+                        map = L.map('map').setView([lat, lon], 15);
+
+                        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                            attribution: '&copy; OpenStreetMap contributors'
+                        }).addTo(map);
+
+                        marker = L.marker([lat, lon]).addTo(map)
+                            .bindPopup('You are here!')
+                            .openPopup();
+                    } else {
+                        // Update marker and view
+                        marker.setLatLng([lat, lon]);
+                        map.setView([lat, lon]);
+                    }
+                },
+                error => alert('Location access denied or unavailable'),
+                { enableHighAccuracy: true }
+            );
+        } else {
+            alert('Geolocation is not supported by this browser.');
+        }
+
+
+        const items = JSON.parse(sessionStorage.getItem("items") || "[]");
+        const cartBody = document.getElementsByClassName("products-section")[0];
+
+        /*items.forEach(item => {
             cartBody.innerHTML += `
                 <tr>
                     <td class="image"><img src="${item.itemImg}" alt="${item.itemName}"></td>
@@ -176,8 +151,134 @@
                     <td class="price">₹${item.itemPrice}/-</td>
                 </tr>
             `;
-        });
-    }
-</script>
+        });*/
+        let index = 0;
+        let values = JSON.parse(sessionStorage.getItem("values") || 0);
+        console.log(values)
+        items.forEach((item) => {
+            cartBody.insertAdjacentHTML('afterbegin', `<div class="product">
+                <div class="product-image"><img src="${item.itemImg}" alt="${item.itemName}"></div>
+                <div class="product-details">
+                    <div class="product-category"></div>
+                    <div class="product-name">${item.itemName}</div>
+                    <div class="product-attributes">
+                        <div class="product-color">${item.itemDes}</div>
+                    </div>
+                </div>
+                <div class="product-price-info">
+                    <div class="product-price">₹${item.itemPrice}</div>
+                    <div class="product-quantity">
+                        <button class="quantity-btn quantity-btn-neg">-</button>
+                        <span class="quantity-number" data-id="${index}">${values[index]}</span>
+                        <button class="quantity-btn quantity-btn-pos">+</button>
+                    </div>
+                    <div class="product-total">₹${item.itemPrice * values[index++]}</div>
+                </div>
+            </div>`)
+        })
+
+        let quantityBtnNeg = Array.from(document.getElementsByClassName("quantity-btn-neg"));
+        let quantityBtnPos = Array.from(document.getElementsByClassName("quantity-btn-pos"));
+
+        quantityBtnNeg.forEach((Element) => {
+            Element.addEventListener("click", (e) => {
+                e.preventDefault();
+                if (parseInt(Element.nextElementSibling.innerHTML) <= 1) {
+                    return;
+                }
+                let current = --values[parseInt(Element.nextElementSibling.dataset.id)];
+                Element.nextElementSibling.innerHTML = current;
+                let parent = Element.parentElement;
+                parent.nextElementSibling.innerHTML = `₹${parseInt(parent.previousElementSibling.innerHTML.slice(1)) * current}`
+                updateValues()
+
+            })
+        })
+
+        quantityBtnPos.forEach((Element) => {
+            Element.addEventListener("click", (e) => {
+                e.preventDefault();
+                let current = ++values[parseInt(Element.previousElementSibling.dataset.id)];
+                Element.previousElementSibling.innerHTML = current;
+                let parent = Element.parentElement;
+                parent.nextElementSibling.innerHTML = `₹${parseInt(parent.previousElementSibling.innerHTML.slice(1)) * current}`
+                updateValues()
+            })
+        })
+
+        function updateValues() {
+            let subAmount = document.getElementById("subAmount");
+            let amount = document.getElementById("amount");
+            let gst = document.getElementById("gst");
+            let shippingCharge = document.getElementById("shippingCharge");
+
+            let productTotal = Array.from(document.querySelectorAll(".product-total"))
+            let total = 0;
+            productTotal.forEach((e)=> {
+                total += parseInt(e.innerHTML.slice(1))
+            });
+            subAmount.innerHTML = `₹${total}`;
+            gst.innerHTML = `₹${(total*5)/100}`;
+            shippingCharge.innerHTML = `₹50`
+            amount.innerHTML = `₹${total + ((total*5)/100) + 50}`
+        }
+        updateValues();
+
+        let btnPay = document.getElementsByClassName("cta-btn")[0];
+        btnPay.addEventListener("click", (e) => {
+            e.preventDefault();
+            paymentGateway(items);
+        })
+
+        async function paymentGateway(items) {
+
+            try {
+                const keyRes = await fetch("/get-key");
+                const keyData = await keyRes.json();
+
+                const res = await fetch("/create-order", {
+                    method: "post",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ items: items, values: values })
+                });
+
+                const data = await res.json();
+                const email = window.sessionStorage.getItem("email").split("@")[0]
+                const receiptId = `${email}_${Date.now()}`;
+
+                const options = {
+                    key: keyData.key,
+                    amount: data.amount,
+                    currency: "INR",
+                    name: "Rasoee",
+                    description: "Nothing",
+                    order_id: data.orderId,
+                    handler: async function (response) {
+                        window.location.href = "/home"
+                    },
+                    prefill: {
+                        email: email,
+                        amount: data.amount
+                    },
+                    theme: {
+                        color: "#528FF0"
+                    }
+                }
+
+                const razorpay = new Razorpay(options);
+                razorpay.open();
+
+            } catch (err) {
+                console.log("Some error occured!", err);
+                alert("Failed to start payment.");
+            }
+        }
+
+    </script>
+
+
+</body>
 
 </html>

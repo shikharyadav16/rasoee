@@ -67,7 +67,6 @@
     .nav-right-menu {
         width: 100px;
         height: 100%;
-        /* margin-top: 15px; */
         display: flex;
         align-items: center;
         justify-content: space-between;

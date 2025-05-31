@@ -20,19 +20,21 @@ const handlePostHomeReq = async (req, res) => {
         .map((value, index) => ({ index, value }))
         .filter(item => item.value !== 0 && item.value !== null);
     let data = [];
+    let values = [];
     try {
         for (const element of cleanedItems) {
             let item;
-            if (element.index >= '100') {
+            values.push(element.value)
+            if (element.index >= 100) {
                 item = await BevItem.findOne({ id: element.index.toString() });
-            } else if (element.index >= '50') {
+            } else if (element.index >= 50) {
                 item = await NonVegItem.findOne({ id: element.index.toString() });
             } else {
                 item = await VegItem.findOne({ id: element.index.toString() });
             }
             if (item) data.push(item);
         }
-        return res.json({ items: data });
+        return res.json({ items: data, values: values });
     } catch (err) {
         console.log("Some error occured!");
         process.exit(1)

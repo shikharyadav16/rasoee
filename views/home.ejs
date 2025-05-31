@@ -502,10 +502,12 @@
                     },
                     body: JSON.stringify({ item: cartItem })
                 })
+                console.log(res)
                 if (res.ok) {
                     response = await res.json();
                     console.log(response.items)
                     await window.sessionStorage.setItem('items', JSON.stringify(response.items));
+                    await window.sessionStorage.setItem('values', JSON.stringify(response.values));
                     window.location.href = "/cart"
                 } else {
                     console.log("Some error occured!")

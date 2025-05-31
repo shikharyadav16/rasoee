@@ -3,7 +3,6 @@ const { setUser } = require("../service/auth");
 
 async function handlePostLoginReq(req, res) {
     const { email, password } = req.body;
-    console.log("not any err")
 
     try {
         const user = await User.findOne({ email: email });
